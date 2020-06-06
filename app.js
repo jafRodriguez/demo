@@ -15,10 +15,8 @@ var commentRoutes = require('./routes/comments'),
 	campgroundRoutes = require('./routes/campgrounds'),
 	indexRoutes = require('./routes/index');
 
-// mongodb+srv://jafAtlas:<password>@cluster0-hnf4k.mongodb.net/<dbname>?retryWrites=true&w=majority
-// mongoose.connect('mongodb://localhost:27017/yelp_camp_v5', {
 mongoose
-	.connect('mongodb+srv://jafAtlas:%23jafAtlas15@cluster0-hnf4k.mongodb.net/Cluster0?retryWrites=true&w=majority', {
+	.connect(process.env.DATABASEURL, {
 		useNewUrlParser    : true,
 		useCreateIndex     : true,
 		useUnifiedTopology : true
@@ -29,6 +27,19 @@ mongoose
 	.catch((err) => {
 		console.log('ERROR', err.message);
 	});
+
+// mongoose
+// 	.connect('mongodb+srv://jafAtlas:%23jafAtlas15@cluster0-hnf4k.mongodb.net/Cluster0?retryWrites=true&w=majority', {
+// 		useNewUrlParser    : true,
+// 		useCreateIndex     : true,
+// 		useUnifiedTopology : true
+// 	})
+// 	.then(() => {
+// 		console.log('Connected to DB!');
+// 	})
+// 	.catch((err) => {
+// 		console.log('ERROR', err.message);
+// 	});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
